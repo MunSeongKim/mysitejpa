@@ -14,14 +14,13 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="user">
-				<form id="join-form" name="joinForm" method="POST" action="${ pageContext.servletContext.contextPath }/user/modify">
-					<input name="a" type="hidden" value="modify" />
-					<input name="no" type="hidden" value="${ vo.no }" />
+				<form id="join-form" name="joinForm" method="POST" action="${ pageContext.servletContext.contextPath }/member/modify">
+					<input name="no" type="hidden" value="${ member.no }" />
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="${ vo.name }" />
+					<input id="name" name="name" type="text" value="${ member.name }" />
 
 					<label class="block-label" for="email">이메일</label>
-					<h3 id="email">${ vo.email }</h3>
+					<h3 id="email">${ member.email }</h3>
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="" placeholder="입력한 비밀번호로 변경됩니다." />
@@ -29,11 +28,11 @@
 					<fieldset>
 						<legend>성별</legend>
 						<c:choose>
-							<c:when test='${ vo.gender == "female" }'>
+							<c:when test='${ member.gender == "female" }'>
 								<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
 								<label>남</label> <input type="radio" name="gender" value="male">
 							</c:when>
-							<c:when test='${ vo.gender == "male" }'>
+							<c:when test='${ member.gender == "male" }'>
 								<label>여</label> <input type="radio" name="gender" value="female">
 								<label>남</label> <input type="radio" name="gender" value="male" checked="checked">
 							</c:when>

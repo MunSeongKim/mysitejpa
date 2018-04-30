@@ -9,14 +9,14 @@
 	</h1>
 	<ul>
 		<c:choose>
-			<c:when test="${ empty authUser.name }">
-				<li><a href="${ pageContext.servletContext.contextPath }/user/login">로그인</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/user/join">회원가입</a></li>
+			<c:when test="${ empty authMember.name }">
+				<li><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></li>
+				<li><a href="${ pageContext.servletContext.contextPath }/member/join">회원가입</a></li>
 			</c:when>
 			<c:otherwise>
-				<li><a href="${ pageContext.servletContext.contextPath }/user/modify">회원정보수정</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/user/logout">로그아웃</a></li>
-				<li>${ authUser.name }님 안녕하세요 ^^;</li>
+				<li><a href="${ pageContext.servletContext.contextPath }/member/modify">회원정보수정</a></li>
+				<li><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></li>
+				<li>${ authMember.name }님 안녕하세요 ^^;</li>
 			</c:otherwise>
 		</c:choose>
 	</ul>

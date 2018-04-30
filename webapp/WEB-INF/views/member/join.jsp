@@ -54,10 +54,10 @@ $(function() {
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="user">
-				<form:form modelAttribute="userVO" id="join-form" name="joinForm" method="POST" action="${ pageContext.servletContext.contextPath }/user/join">
+				<form:form modelAttribute="member" id="join-form" name="joinForm" method="POST" action="${ pageContext.servletContext.contextPath }/member/join">
 					<label class="block-label" for="name">이름</label>
 					<!-- <input id="name" name="name" type="text" value="" /> -->
-					<form:input path="name" />
+					<form:input path="name"/>
 					<p style="padding: 0; text-align: left; color: red">
 						<form:errors path="name" />
 					</p>

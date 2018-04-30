@@ -13,18 +13,30 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.cafe24.mysite.type.Gender;
+import com.cafe24.mysite.type.Role;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table( name = "member" )
+@Getter @Setter @ToString
 public class Member {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long no;
 
-    @Column( name = "name", nullable = false, length = 50 )
+    @NotEmpty @Length(min=2, max=10)
+    @Column( name = "name", nullable = false, length = 10 )
     private String name;
 
+    @NotEmpty @Email
     @Column( name = "email", nullable = false, length = 200 )
     private String email;
 
@@ -32,65 +44,15 @@ public class Member {
     private String password;
 
     @Enumerated( value = EnumType.STRING )
-    @Column( name = "gender", nullable = false )
+    @Column( name = "gender", nullable = false, columnDefinition = "enum('male', 'female')" )
     private Gender gender;
+    
+    @Enumerated(value=EnumType.STRING)
+    @Column(name="role", nullable=false, columnDefinition="enum('user', 'admin')")
+    private Role role;
 
-    @Temporal( value = TemporalType.DATE )
+    @Temporal( value = TemporalType.TIMESTAMP )
     @Column( name = "join_date", nullable = false )
     private Date joinDate;
-
-    public Long getNo() {
-	return no;
-    }
-
-    public void setNo( Long no ) {
-	this.no = no;
-    }
-
-    public String getName() {
-	return name;
-    }
-
-    public void setName( String name ) {
-	this.name = name;
-    }
-
-    public String getEmail() {
-	return email;
-    }
-
-    public void setEmail( String email ) {
-	this.email = email;
-    }
-
-    public String getPassword() {
-	return password;
-    }
-
-    public void setPassword( String password ) {
-	this.password = password;
-    }
-
-    public Gender getGender() {
-	return gender;
-    }
-
-    public void setGender( Gender gender ) {
-	this.gender = gender;
-    }
-
-    public Date getJoinDate() {
-	return joinDate;
-    }
-
-    public void setJoinDate( Date joinDate ) {
-	this.joinDate = joinDate;
-    }
-
-    @Override
-    public String toString() {
-	return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
-		+ gender + ", joinDate=" + joinDate + "]";
-    }
 
 }

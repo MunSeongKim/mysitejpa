@@ -63,7 +63,7 @@
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.use_sql_comments">true</prop>
 				<prop key="hibernate.id.new_generator_mappings">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>			
+				<prop key="hibernate.hbm2ddl.auto">update</prop>			
 			</props>
 		</property>
 	</bean>
@@ -79,4 +79,15 @@
 
 	<!-- Jpa repository -->
 	<jpa:repositories base-package="com.cafe24.mysite.repository" />
+	
+	<!-- MyBatis SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
+	</bean>
+
+	<!-- MyBatis SqlSessionTemplate -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
 </beans>
